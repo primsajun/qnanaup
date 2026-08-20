@@ -1,0 +1,101 @@
+category,level,question_text,options,correct_answer_index,explanation
+Mathematics,Easy,What is the sum of 47 and 58?,["95", "105", "115", "100"],1,47 + 58 = 105.
+Mathematics,Easy,What is the product of 12 and 8?,["96", "84", "108", "92"],0,12 * 8 = 96.
+Mathematics,Easy,What is the value of 144 divided by 12?,["10", "11", "12", "14"],2,144 / 12 = 12.
+Mathematics,Easy,What is the result of subtracting 67 from 100?,["33", "23", "43", "37"],0,100 - 67 = 33.
+Mathematics,Easy,What is the only even prime number?,["0", "1", "2", "4"],2,2 is the only even prime number because every other even number is divisible by 2.
+Mathematics,Easy,What is the smallest positive prime number?,["0", "1", "2", "3"],2,2 is the smallest prime number; 1 is neither prime nor composite.
+Mathematics,Easy,What is the value of any non-zero number raised to the power of 0?,["0", "1", "The number itself", "Undefined"],1,By exponent rules a^0 = 1 for any non-zero number a.
+Mathematics,Easy,What is the square of 15?,["225", "125", "250", "625"],0,15 * 15 = 225.
+Mathematics,Easy,What is the square root of 81?,["7", "8", "9", "11"],2,9 * 9 = 81 so the principal square root of 81 is 9.
+Mathematics,Easy,Which mathematical property states that a + b = b + a?,["Associative Property", "Commutative Property", "Distributive Property", "Identity Property"],1,The commutative property of addition states that the order of addends does not affect the sum.
+Mathematics,Easy,What is 1/2 expressed as a percentage?,["25%", "50%", "75%", "20%"],1,1/2 = 0.5 = 50%.
+Mathematics,Easy,What is 25% of 200?,["25", "50", "75", "100"],1,0.25 * 200 = 50.
+Mathematics,Easy,What is the sum of 1/4 and 2/4 in simplest form?,["3/4", "3/8", "1/2", "1"],0,1/4 + 2/4 = 3/4.
+Mathematics,Easy,What is 0.75 written as a simplified fraction?,["3/4", "7/5", "75/10", "1/4"],0,0.75 = 75/100 = 3/4.
+Mathematics,Easy,What is the reciprocal of 5?,["-5", "1/5", "0.5", "5/1"],1,The reciprocal of a number x is 1/x so for 5 it is 1/5.
+Mathematics,Easy,What is 10% of 350?,["3.5", "35", "70", "350"],1,0.10 * 350 = 35.
+Mathematics,Easy,Which fraction is equivalent to 2/3?,["4/6", "3/2", "4/9", "6/8"],0,Multiplying numerator and denominator of 2/3 by 2 gives 4/6.
+Mathematics,Easy,What is 3/5 minus 1/5?,["2/5", "4/5", "2/0", "1/5"],0,3/5 - 1/5 = 2/5.
+Mathematics,Easy,What is 0.2 multiplied by 0.3?,["0.6", "0.06", "0.006", "6.0"],1,0.2 * 0.3 = 0.06.
+Mathematics,Easy,If an item costs $80 and has a 10% discount what is the discount amount?,["$8", "$10", "$16", "$80"],0,10% of $80 is $8.
+Mathematics,Easy,How many sides does a hexagon have?,["5", "6", "7", "8"],1,A hexagon is a polygon with 6 sides.
+Mathematics,Easy,What is the sum of the interior angles of any triangle?,["90°", "180°", "270°", "360°"],1,The sum of the three interior angles in any Euclidean triangle is always 180°.
+Mathematics,Easy,How many sides does an octagon have?,["6", "7", "8", "10"],2,An octagon has 8 sides.
+Mathematics,Easy,What is a triangle with all three sides equal called?,["Isosceles", "Equilateral", "Scalene", "Right-angled"],1,An equilateral triangle has all three sides of equal length and all interior angles equal to 60°.
+Mathematics,Easy,What is a triangle with two equal sides called?,["Isosceles", "Equilateral", "Scalene", "Obtuse"],0,An isosceles triangle has at least two sides of equal length.
+Mathematics,Easy,What is an angle measuring exactly 90 degrees called?,["Acute angle", "Right angle", "Obtuse angle", "Straight angle"],1,A 90-degree angle forms a perpendicular intersection and is called a right angle.
+Mathematics,Easy,What is an angle measuring less than 90 degrees called?,["Acute angle", "Right angle", "Obtuse angle", "Reflex angle"],0,An acute angle has a measure greater than 0° and less than 90°.
+Mathematics,Easy,What is the formula for the perimeter of a rectangle with length l and width w?,["l * w", "2 * (l + w)", "2 * l * w", "l + w"],1,The perimeter is the total distance around the boundary: P = 2l + 2w = 2(l + w).
+Mathematics,Easy,What is the formula for the area of a rectangle with length l and width w?,["l + w", "2 * (l + w)", "l * w", "l² * w²"],2,The area of a rectangle is the product of its length and width: A = l * w.
+Mathematics,Easy,What is the distance around the outer boundary of a circle called?,["Radius", "Diameter", "Circumference", "Chord"],2,The circumference is the perimeter or boundary distance around a circle (C = 2 * pi * r).
+Mathematics,Easy,What is the line segment from the center of a circle to any point on its boundary called?,["Diameter", "Radius", "Chord", "Arc"],1,The radius is half of the diameter and extends from the center to the edge.
+Mathematics,Easy,What is the line segment connecting two points on a circle and passing through its center called?,["Radius", "Diameter", "Tangent", "Secant"],1,The diameter is the longest chord in a circle equal to twice the radius.
+Mathematics,Easy,What is the sum of the interior angles of a quadrilateral?,["180°", "360°", "540°", "720°"],1,The interior angles of any four-sided polygon sum to (4 - 2) * 180° = 360°.
+Mathematics,Easy,What is an angle greater than 90 degrees but less than 180 degrees called?,["Acute angle", "Right angle", "Obtuse angle", "Straight angle"],2,An obtuse angle measures between 90° and 180°.
+Mathematics,Easy,What is an angle of exactly 180 degrees called?,["Right angle", "Obtuse angle", "Straight angle", "Complete angle"],2,A straight angle forms a flat line measuring exactly 180°.
+Mathematics,Easy,In the Cartesian coordinate plane what is the point (0, 0) called?,["The Vertex", "The Origin", "The Intercept", "The Midpoint"],1,The origin is the intersection point of the x-axis and y-axis where both coordinates are 0.
+Mathematics,Easy,In an ordered pair (x, y) what is the horizontal coordinate x called?,["Abscissa", "Ordinate", "Slope", "Hypotenuse"],0,The x-coordinate is formally called the abscissa and the y-coordinate is the ordinate.
+Mathematics,Easy,How many degrees are in a full circular rotation?,["180°", "270°", "360°", "400°"],2,A full rotation around a point completes 360 degrees.
+Mathematics,Easy,What is a 5-sided polygon called?,["Quadrilateral", "Pentagon", "Hexagon", "Heptagon"],1,A polygon with 5 sides and 5 vertices is a pentagon.
+Mathematics,Easy,What is the area of a square with a side length of 6 cm?,["12 cm²", "24 cm²", "36 cm²", "48 cm²"],2,Area = side * side = 6 * 6 = 36 cm².
+Mathematics,Easy,If x + 7 = 15 what is the value of x?,["7", "8", "9", "22"],1,Subtracting 7 from both sides gives x = 15 - 7 = 8.
+Mathematics,Easy,If 3y = 27 what is the value of y?,["6", "7", "8", "9"],3,Dividing both sides by 3 gives y = 27 / 3 = 9.
+Mathematics,Easy,In the linear equation y = mx + b what does 'm' represent?,["The y-intercept", "The slope of the line", "The x-intercept", "The variable"],1,In slope-intercept form m denotes the slope (rate of change) and b represents the y-intercept.
+Mathematics,Easy,In the linear equation y = mx + b what does 'b' represent?,["The slope", "The y-intercept", "The origin", "The curvature"],1,The constant b is the value of y when x = 0 which is the y-intercept.
+Mathematics,Easy,If 2x - 4 = 10 what is the value of x?,["3", "5", "7", "8"],2,Adding 4 gives 2x = 14; dividing by 2 yields x = 7.
+Mathematics,Easy,What is the value of the algebraic expression 3a + 2 when a = 4?,["10", "12", "14", "16"],2,3(4) + 2 = 12 + 2 = 14.
+Mathematics,Easy,What is the simplified form of 2x + 5x?,["7x", "7x²", "10x", "7"],0,Combining like terms: 2x + 5x = (2 + 5)x = 7x.
+Mathematics,Easy,What is the result of multiplying (x)(x)?,["2x", "x²", "x/2", "x + x"],1,x multiplied by itself is x².
+Mathematics,Easy,If a = 5 and b = 3 what is the value of a² - b²?,["4", "16", "8", "25"],1,a² - b² = 5² - 3² = 25 - 9 = 16.
+Mathematics,Easy,What is the solution to the inequality x - 3 > 5?,["x > 2", "x < 8", "x > 8", "x > 15"],2,Adding 3 to both sides yields x > 8.
+Mathematics,Easy,What are all the factors of 12?,["1, 2, 3, 4, 6, 12", "1, 2, 4, 12", "2, 3, 4, 6", "1, 12"],0,The positive integers that divide 12 without a remainder are 1 2 3 4 6 and 12.
+Mathematics,Easy,What is the greatest common factor (GCF) of 18 and 24?,["3", "6", "9", "12"],1,The factors of 18 are 1,2,3,6,9,18 and of 24 are 1,2,3,4,6,8,12,24; the greatest common one is 6.
+Mathematics,Easy,What is the least common multiple (LCM) of 4 and 6?,["12", "24", "18", "10"],0,Multiples of 4: 4 8 12... Multiples of 6: 6 12... The least common multiple is 12.
+Mathematics,Easy,Which of the following numbers is a composite number?,["2", "3", "7", "9"],3,9 is composite because it has factors other than 1 and itself (1 3 9).
+Mathematics,Easy,What is the prime factorization of 20?,["2 * 10", "4 * 5", "2 * 2 * 5 (2² * 5)", "2 * 3 * 5"],2,20 = 4 * 5 = 2 * 2 * 5 = 2² * 5.
+Mathematics,Easy,A number is divisible by 3 if what condition is met?,["The last digit is 3", "The sum of its digits is divisible by 3", "The last digit is even", "The number ends in 0 or 5"],1,The divisibility rule for 3 states that a number is divisible by 3 if the sum of its digits is divisible by 3.
+Mathematics,Easy,A number is divisible by 5 if its last digit is what?,["0 or 5", "Even", "Odd", "5 only"],0,Any integer ending in 0 or 5 is evenly divisible by 5.
+Mathematics,Easy,What is the absolute value of -17?,["-17", "17", "0", "1/17"],1,The absolute value represents distance from zero on the number line so |-17| = 17.
+Mathematics,Easy,What is the value of -8 + 15?,["-7", "7", "-23", "23"],1,-8 + 15 = 7.
+Mathematics,Easy,What is the product of two negative numbers (e.g. -4 * -3)?,["-12", "12", "-7", "7"],1,The product of two negative numbers is always positive: (-4) * (-3) = 12.
+Mathematics,Easy,What is the mean (average) of the numbers 4 8 and 12?,["6", "8", "10", "12"],1,Mean = (4 + 8 + 12) / 3 = 24 / 3 = 8.
+Mathematics,Easy,What is the median of the dataset [3, 7, 9, 12, 15]?,["7", "9", "12", "15"],1,The middle value in the sorted list of 5 elements is 9.
+Mathematics,Easy,What is the mode of the dataset [2, 4, 4, 6, 7, 4, 9]?,["2", "4", "6", "7"],1,The mode is the most frequently occurring value which is 4.
+Mathematics,Easy,What is the range of the dataset [5, 12, 8, 22, 3]?,["17", "19", "22", "12"],1,Range = Maximum - Minimum = 22 - 3 = 19.
+Mathematics,Easy,What is the probability of flipping a standard fair coin and getting heads?,["1/4", "1/2 (50%)", "1/3", "1 (100%)"],1,A fair coin has 2 equally likely outcomes so P(Heads) = 1/2.
+Mathematics,Easy,What is the probability of rolling a 4 on a standard six-sided die?,["1/6", "1/4", "1/2", "4/6"],0,A standard die has 6 faces numbered 1 through 6 so P(4) = 1/6.
+Mathematics,Easy,What is the probability of rolling an even number on a standard six-sided die?,["1/6", "2/6", "3/6 (1/2)", "4/6"],2,The even outcomes are {2, 4, 6} which gives 3/6 = 1/2.
+Mathematics,Easy,What is the range of possible probability values for any event?,["0 to 1 (0% to 100%)", "-1 to 1", "0 to infinity", "1 to 100 only"],0,Probabilities are real numbers bounded between 0 and 1.
+Mathematics,Easy,If an event is guaranteed to happen what is its probability?,["0", "0.5", "1", "100"],2,A certain event has a probability of exactly 1.
+Mathematics,Easy,If an event is completely impossible what is its probability?,["0", "-1", "0.01", "Undefined"],0,An impossible event has a probability of 0.
+Mathematics,Easy,How many meters are in one kilometer?,["100 m", "500 m", "1,000 m", "10,000 m"],2,1 kilometer equals 1 000 meters.
+Mathematics,Easy,How many centimeters are in one meter?,["10 cm", "50 cm", "100 cm", "1,000 cm"],2,1 meter equals 100 centimeters.
+Mathematics,Easy,How many millimeters are in one centimeter?,["10 mm", "100 mm", "1,000 mm", "0.1 mm"],0,1 centimeter equals 10 millimeters.
+Mathematics,Easy,How many grams are in one kilogram?,["100 g", "500 g", "1,000 g", "10,000 g"],2,1 kilogram equals 1 000 grams.
+Mathematics,Easy,How many minutes are in 2.5 hours?,["120 minutes", "150 minutes", "180 minutes", "250 minutes"],1,2.5 * 60 = 150 minutes.
+Mathematics,Easy,How many seconds are in one hour?,["60 seconds", "600 seconds", "3,600 seconds", "86,400 seconds"],2,60 minutes * 60 seconds = 3 600 seconds.
+Mathematics,Easy,How many degrees are in the sum of two complementary angles?,["45°", "90°", "180°", "360°"],1,Complementary angles sum to 90 degrees.
+Mathematics,Easy,How many degrees are in the sum of two supplementary angles?,["90°", "180°", "270°", "360°"],1,Supplementary angles sum to 180 degrees.
+Mathematics,Easy,How many days are in a standard non-leap year?,["364", "365", "366", "360"],1,A common calendar year has 365 days; a leap year has 366.
+Mathematics,Easy,How many sides does a nonagon have?,["7", "8", "9", "10"],2,A nonagon is a polygon with 9 sides.
+Mathematics,Easy,According to the order of operations (PEMDAS/BODMAS) which operation is performed first?,["Multiplication", "Addition", "Parentheses / Brackets", "Exponents / Orders"],2,Parentheses / Brackets have the highest precedence in standard order of operations.
+Mathematics,Easy,What is the value of 5 + 3 * 2?,["16", "11", "13", "10"],1,By order of operations multiplication precedes addition: 3 * 2 = 6 then 5 + 6 = 11.
+Mathematics,Easy,What is the value of (5 + 3) * 2?,["16", "11", "13", "10"],0,Parentheses are calculated first: (5 + 3) = 8 then 8 * 2 = 16.
+Mathematics,Easy,What is 2 raised to the 4th power (2⁴)?,["8", "16", "32", "64"],1,2⁴ = 2 * 2 * 2 * 2 = 16.
+Mathematics,Easy,What is 10³?,["30", "100", "1,000", "10,000"],2,10³ = 10 * 10 * 10 = 1 000.
+Mathematics,Easy,What is the value of 4! (4 factorial)?,["10", "16", "24", "120"],2,4! = 4 * 3 * 2 * 1 = 24.
+Mathematics,Easy,What is 0! (zero factorial) defined as?,["0", "1", "Undefined", "Infinity"],1,By mathematical definition and convention 0! = 1.
+Mathematics,Easy,What is the square root of 100?,["5", "10", "20", "50"],1,10 * 10 = 100 so sqrt(100) = 10.
+Mathematics,Easy,What is the cube root of 27?,["3", "9", "2.7", "81"],0,3 * 3 * 3 = 27 so the cube root of 27 is 3.
+Mathematics,Easy,What is the value of (-3)²?,["-9", "9", "-6", "6"],1,(-3) * (-3) = 9 because the square of any real negative number is positive.
+Mathematics,Easy,If a car travels at a constant speed of 60 km/h for 3 hours what total distance does it cover?,["120 km", "180 km", "200 km", "240 km"],1,Distance = Speed * Time = 60 * 3 = 180 km.
+Mathematics,Easy,If you buy 4 notebooks for $3 each and pay with a $20 bill how much change should you receive?,["$8", "$12", "$7", "$5"],0,Total cost = 4 * $3 = $12. Change = $20 - $12 = $8.
+Mathematics,Easy,What is the ratio of 15 boys to 10 girls in simplest form?,["3:2", "2:3", "15:10", "5:2"],0,Dividing both terms by 5 gives 3:2.
+Mathematics,Easy,If a recipe calls for 2 cups of sugar for 4 servings how many cups of sugar are needed for 8 servings?,["3 cups", "4 cups", "6 cups", "8 cups"],1,8 servings is double the recipe so 2 * 2 = 4 cups of sugar are needed.
+Mathematics,Easy,What is the volume of a rectangular box with length 4 cm width 3 cm and height 2 cm?,["12 cm³", "18 cm³", "24 cm³", "36 cm³"],2,Volume = length * width * height = 4 * 3 * 2 = 24 cm³.
+Mathematics,Easy,What is the perimeter of an equilateral triangle with a side length of 7 cm?,["14 cm", "21 cm", "28 cm", "49 cm"],1,Perimeter = 3 * side length = 3 * 7 = 21 cm.
+Mathematics,Easy,If a train leaves at 2:15 PM and arrives at 4:45 PM how long did the journey take?,["2 hours 15 minutes", "2 hours 30 minutes", "2 hours 45 minutes", "3 hours"],1,From 2:15 to 4:15 is 2 hours; from 4:15 to 4:45 is 30 minutes totaling 2 hours 30 minutes.
+Mathematics,Easy,What is 15% of 100?,["1.5", "10", "15", "25"],2,15% of 100 is 15.
+Mathematics,Easy,What integer comes immediately before -5 on the number line?,["-4", "-6", "-7", "0"],1,Moving left on the number line the integer immediately before -5 is -6.
+Mathematics,Easy,What is the Roman numeral for 50?,["X", "L", "C", "D"],1,In Roman numerals L represents 50.

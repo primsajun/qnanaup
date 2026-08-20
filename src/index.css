@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #211e5a; /* Deep Indigo matching logo */
+    --color-primary-hover: #312e81;
+    --color-bg-start: #f1f5f9; /* Soft light gray/blue */
+    --color-bg-end: #e2e8f0;
+    --color-surface: #ffffff; /* White cards */
+    --color-text-primary: #0f172a; /* Slate 900 */
+    --color-text-secondary: #475569; /* Slate 600 */
+    --color-border: #e2e8f0; /* Slate 200 */
+    --color-success: #16a34a; /* Green 600 */
+    --color-success-bg: #dcfce7;
+    --color-error: #dc2626; /* Red 600 */
+    --color-error-bg: #fee2e2;
+  }
+
+  body {
+    background: radial-gradient(circle at top left, #f8fafc, #eff6ff, #f1f5f9);
+    background-attachment: fixed;
+    color: var(--color-text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Vanilla CSS Utilities for our app */
+  .bg-bg-color { background-color: transparent; }
+  .bg-surface { background-color: var(--color-surface); }
+  .bg-success-bg { background-color: var(--color-success-bg); }
+  .bg-error-bg { background-color: var(--color-error-bg); }
+  
+  .text-primary { color: var(--color-primary); }
+  .text-text-primary { color: var(--color-text-primary); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-success { color: var(--color-success); }
+  .text-error { color: var(--color-error); }
+  
+  .border-border-color { border-color: var(--color-border); }
+  .border-primary { border-color: var(--color-primary); }
+  .border-success { border-color: var(--color-success); }
+  .border-error { border-color: var(--color-error); }
+
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 hover:bg-[var(--color-primary-hover)] active:scale-95 shadow-md;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .btn-outline {
+    @apply border border-[var(--color-border)] text-[var(--color-text-primary)] font-medium py-3 px-6 rounded-lg transition-all duration-200 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] active:scale-95 shadow-sm bg-white;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .card-magical {
+    @apply bg-[var(--color-surface)] border border-[var(--color-border)] rounded-xl shadow-sm transition-all duration-300;
+  }
+
+  .card-magical:hover {
+    @apply shadow-md border-[var(--color-primary)] -translate-y-1;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
