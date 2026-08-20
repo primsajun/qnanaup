@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { Timer, X, CheckCircle2, XCircle, Lightbulb, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { StopCircle, RotateCcw, CheckCircle2, XCircle, Lightbulb, ArrowRight, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 
 export default function ActiveQuiz() {
   const { categoryId, levelId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  
-  // Get question count from route state, default to 10
-  const requestedCount = location.state?.questionCount || 10;
   
   const categoryName = categoryId ? categoryId.charAt(0).toUpperCase() + categoryId.slice(1) : 'Science';
   const levelName = levelId ? levelId.charAt(0).toUpperCase() + levelId.slice(1) : 'Expert';
@@ -18,6 +14,7 @@ export default function ActiveQuiz() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(100);
   
   const [showFeedback, setShowFeedback] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -38,20 +35,57 @@ export default function ActiveQuiz() {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error("Not authenticated");
 
+      // Fetch all unanswered questions (up to 1000 to get everything)
       const { data, error: rpcError } = await supabase.rpc('get_unanswered_questions', {
         p_user_id: session.user.id,
         p_category: categoryName,
         p_level: levelName,
-        p_limit: requestedCount
+        p_limit: 1000
       });
 
       if (rpcError) throw rpcError;
       
+      // Also get the exact total question count for this category/level
+      const { count } = await supabase
+        .from('questions')
+        .select('*', { count: 'exact', head: true })
+        .eq('category', categoryName)
+        .eq('level', levelName);
+
+      setTotalQuestions(count || 100);
       setQuestions(data || []);
+      setCurrentIndex(0);
+      setShowFeedback(false);
+      setSelectedOption(null);
     } catch (err) {
       console.error(err);
       setError("Failed to load questions. Make sure your database functions are set up.");
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRestart = async () => {
+    if (!window.confirm("Are you sure? This will delete all your progress for this level and start you over from Question 1.")) return;
+    
+    try {
+      setLoading(true);
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      await supabase.rpc('reset_level_progress', {
+        p_user_id: session.user.id,
+        p_category: categoryName,
+        p_level: levelName
+      });
+      
+      // Reset local stats
+      setStats({ correct: 0, incorrect: 0, breakdown: [] });
+      
+      // Refetch all questions (will be 100 again)
+      await fetchQuestions();
+    } catch (err) {
+      console.error("Failed to reset:", err);
+      setError("Failed to reset progress.");
       setLoading(false);
     }
   };
@@ -109,7 +143,7 @@ export default function ActiveQuiz() {
         setSelectedOption(null);
       } else {
         // Complete quiz
-        navigate('/quiz-complete', { state: { stats } });
+        navigate('/completed', { state: { stats } });
       }
     }
   };
@@ -118,7 +152,7 @@ export default function ActiveQuiz() {
     return (
       <div className="min-h-screen bg-bg-color flex flex-col items-center justify-center font-sans">
         <Loader2 size={40} className="text-primary animate-spin mb-4" />
-        <h2 className="text-xl font-bold">Fetching fresh questions...</h2>
+        <h2 className="text-xl font-bold">Fetching questions...</h2>
       </div>
     );
   }
@@ -140,39 +174,50 @@ export default function ActiveQuiz() {
         <CheckCircle2 size={64} className="text-success mb-6" />
         <h2 className="text-3xl font-bold mb-4">You are a Master!</h2>
         <p className="text-secondary text-lg max-w-md mb-8">
-          You have answered all available questions for {categoryName} ({levelName}). There are no new questions left for you to practice here.
+          You have answered all {totalQuestions} questions for {categoryName} ({levelName}). 
         </p>
-        <button onClick={() => navigate('/categories')} className="btn-primary">Choose Another Topic</button>
+        <div className="flex gap-4 justify-center">
+          <button onClick={() => navigate('/categories')} className="btn-primary">Choose Another Topic</button>
+          <button onClick={handleRestart} className="btn-outline">Restart Level</button>
+        </div>
       </div>
     );
   }
 
   const currentQ = questions[currentIndex];
-  const progressPercent = ((currentIndex + 1) / questions.length) * 100;
+  
+  // Calculate true progress (e.g. if they already answered 27, and they are on the 1st of the remaining 73, they are on question 28)
+  const answeredCount = totalQuestions - questions.length;
+  const trueQuestionNumber = answeredCount + currentIndex + 1;
+  const progressPercent = (trueQuestionNumber / totalQuestions) * 100;
+  
   const actualCorrectIndex = currentQ.correct_answer_index;
   const isSelectedCorrect = selectedOption === actualCorrectIndex;
 
   return (
     <div className="min-h-screen bg-bg-color flex flex-col font-sans">
       {/* Quiz Header */}
-      <header className="bg-surface border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+      <header className="bg-surface border-b px-6 py-4 flex items-center justify-between sticky top-0 z-10 shadow-sm">
         <div className="flex items-center gap-2 text-xs font-bold text-secondary tracking-wider uppercase">
           <span className="text-primary">{categoryName}</span>
           <span className="text-gray-400">&gt;</span>
           <span>{levelName}</span>
         </div>
         
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 rounded-full text-sm font-semibold">
-            <Timer size={16} />
-            --:--
-          </div>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={handleRestart}
+            className="flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors border border-border-color px-3 py-1.5 rounded-md hover:border-primary bg-gray-50"
+          >
+            <RotateCcw size={16} />
+            RESTART
+          </button>
           <button 
             onClick={() => navigate('/categories')}
-            className="flex items-center gap-2 text-xs font-bold text-secondary hover:text-text-primary transition-colors"
+            className="flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-error transition-colors border border-border-color px-3 py-1.5 rounded-md hover:border-error bg-gray-50"
           >
-            <X size={16} />
-            EXIT QUIZ
+            <StopCircle size={16} />
+            STOP
           </button>
         </div>
       </header>
@@ -184,7 +229,7 @@ export default function ActiveQuiz() {
           {/* Progress */}
           <div className="flex justify-between text-xs font-bold text-secondary mb-2 uppercase tracking-wide">
             <span>{categoryName} • {levelName}</span>
-            <span>Question {currentIndex + 1} of {questions.length}</span>
+            <span>Question {trueQuestionNumber} of {totalQuestions}</span>
           </div>
           <div className="w-full bg-gray-200 h-1.5 rounded-full mb-8 flex overflow-hidden">
             <div className="bg-primary h-full transition-all duration-300 ease-out" style={{ width: `${progressPercent}%` }}></div>
@@ -246,8 +291,6 @@ export default function ActiveQuiz() {
                     
                     <span className="font-medium flex-1">{opt}</span>
                     
-                    {!showFeedback && isThisSelected && <CheckCircle2 size={18} className="text-primary" />}
-                    {showFeedback && isThisSelected && !isThisCorrect && <X size={18} className="text-error" />}
                   </button>
                 );
               })}

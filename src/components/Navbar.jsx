@@ -9,7 +9,6 @@ export default function Navbar({ session }) {
     { name: 'Home', path: '/' },
     { name: 'Categories', path: '/categories' },
     { name: 'Progress', path: '/progress' },
-    { name: 'Analytics', path: '/analytics' },
   ];
 
   const handleLogout = async () => {

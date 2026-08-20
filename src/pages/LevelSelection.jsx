@@ -57,7 +57,7 @@ export default function LevelSelection() {
           <div 
             key={idx} 
             className="bg-surface border p-8 rounded-xl shadow-sm hover-lift cursor-pointer flex flex-col h-full"
-            onClick={() => navigate(`/quiz-config/${categoryId}/${level.name.toLowerCase()}`)}
+            onClick={() => navigate(`/quiz/${categoryId}/${level.name.toLowerCase()}`)}
           >
             <div className="flex items-center gap-3 mb-6">
               <h2 className="text-2xl font-bold">{level.name}</h2>

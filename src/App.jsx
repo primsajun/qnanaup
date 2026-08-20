@@ -54,9 +54,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/categories" element={<Categories />} />
               <Route path="/levels/:categoryId" element={<LevelSelection />} />
-              <Route path="/quiz-config/:categoryId/:levelId" element={<QuizConfig />} />
+              <Route path="/quiz/:category/:level" element={<ActiveQuiz />} />
+              <Route path="/completed" element={<QuizCompleted />} />
               <Route path="/progress" element={<Progress />} />
-              <Route path="/quiz-complete" element={<QuizCompleted />} />
               {/* Default fallback */}
               <Route path="/analytics" element={<Navigate to="/progress" replace />} />
             </Route>
