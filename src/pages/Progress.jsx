@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { Trophy, Target, Flame, TrendingUp, TrendingDown } from 'lucide-react';
 
@@ -7,6 +8,8 @@ export default function Progress() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -14,14 +17,18 @@ export default function Progress() {
         if (!session) return;
         
         const [
-          { data: totalsData }, 
-          { data: datesData },
-          { data: masteryData }
+          { data: totalsData, error: e1 }, 
+          { data: datesData, error: e2 },
+          { data: masteryData, error: e3 }
         ] = await Promise.all([
           supabase.rpc('get_user_totals', { p_user_id: session.user.id }),
           supabase.rpc('get_user_activity_dates', { p_user_id: session.user.id }),
           supabase.rpc('get_category_mastery', { p_user_id: session.user.id })
         ]);
+
+        if (e1 || e2 || e3) {
+          setErrorMsg(JSON.stringify(e1 || e2 || e3));
+        }
         
         let streak = 0;
         if (datesData && datesData.length > 0) {
@@ -57,14 +64,24 @@ export default function Progress() {
 
         if (masteryData) {
           const processedCategories = masteryData.map(cat => {
-            const accuracy = cat.total_questions > 0 
+            // Accuracy is (Correct / Answered), not (Correct / Total Available)
+            const answered = cat.answered_questions || 0;
+            const accuracy = answered > 0 
+              ? Math.round((cat.correct_answers / answered) * 100) 
+              : 0;
+              
+            // Mastery is (Correct / Total Available)
+            const mastery = cat.total_questions > 0 
               ? Math.round((cat.correct_answers / cat.total_questions) * 100) 
               : 0;
+
             return {
               name: cat.category,
               total: cat.total_questions,
               correct: cat.correct_answers,
-              accuracy
+              answered: answered,
+              accuracy: accuracy,
+              mastery: mastery
             };
           });
           // Sort by accuracy descending
@@ -74,6 +91,7 @@ export default function Progress() {
 
       } catch (err) {
         console.error("Error fetching stats:", err);
+        setErrorMsg(err.message);
       } finally {
         setLoading(false);
       }
@@ -86,12 +104,19 @@ export default function Progress() {
   
   // Calculate strongest and weakest
   // Only consider categories where the user has answered at least 1 question
-  const activeCategories = categories.filter(c => c.total > 0);
+  const activeCategories = categories.filter(c => c.answered > 0);
   const strongest = activeCategories.length > 0 ? activeCategories[0] : null;
   const weakest = activeCategories.length > 0 ? activeCategories[activeCategories.length - 1] : null;
 
   return (
     <div className="container py-12 animate-fade-in max-w-4xl">
+      <Link 
+        to="/" 
+        className="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-primary transition-colors mb-8 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg w-max"
+      >
+        &larr; Back to Home
+      </Link>
+      
       <div className="mb-10">
         <h1 className="text-4xl font-bold mb-2">Learning Progress</h1>
         <p className="text-secondary text-lg">
@@ -147,9 +172,15 @@ export default function Progress() {
         <h2 className="text-xl font-bold mb-4">Category Breakdown</h2>
         <div className="border-t mb-6"></div>
         
+        {errorMsg && (
+          <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 border border-red-200">
+            <strong>Database Error:</strong> {errorMsg}
+          </div>
+        )}
+
         {loading ? (
           <div className="text-center text-secondary py-8">Loading your progress...</div>
-        ) : categories.length === 0 ? (
+        ) : categories.length === 0 && !errorMsg ? (
           <div className="text-center text-secondary py-8">No categories available yet.</div>
         ) : (
           <div className="flex flex-col gap-4">
@@ -159,7 +190,7 @@ export default function Progress() {
                   <div>
                     <div className="font-bold text-lg">{cat.name}</div>
                     <div className="text-secondary text-sm">
-                      {cat.correct} / {cat.total} Questions Correct
+                      {cat.correct} Correct out of {cat.answered} Answered (Total: {cat.total})
                     </div>
                   </div>
                   <div className="text-2xl font-bold text-primary">{cat.accuracy}%</div>

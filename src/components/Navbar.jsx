@@ -1,15 +1,26 @@
+import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Bell, User, LogOut } from 'lucide-react';
+import { User, LogOut } from 'lucide-react';
 import { supabase } from '../lib/supabaseClient';
 
 export default function Navbar({ session }) {
   const location = useLocation();
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Categories', path: '/categories' },
-    { name: 'Progress', path: '/progress' },
-  ];
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -23,55 +34,60 @@ export default function Navbar({ session }) {
     <nav className="border-b border-border-color bg-surface">
       <div className="container flex items-center justify-between py-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 group relative">
+          {/* Floating Mario Star */}
+          <img 
+            src="https://media.tenor.com/a4fJqgV-kCQAAAAi/mario-star.gif" 
+            alt="Star" 
+            className="w-8 h-8 absolute -left-10 -top-2 animate-bounce opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          />
           <div className="flex items-center text-primary font-bold text-2xl tracking-tight">
             Zenviq
           </div>
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex items-center gap-6">
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.path || 
-                             (link.path !== '/' && location.pathname.startsWith(link.path));
-            return (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive ? 'text-primary border-b-2 border-primary pb-1' : 'text-secondary hover:text-primary'
-                }`}
-                style={{ marginBottom: isActive ? '-3px' : '0' }}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
-        </div>
+        {/* Empty middle spacer to keep logo left and actions right */}
+        <div className="flex-1"></div>
 
         {/* User Actions */}
-        <div className="flex items-center gap-4">
-          <button className="text-secondary hover:text-primary transition-colors">
-            <Bell size={20} />
-          </button>
+        <div className="flex items-center gap-6">
+          <Link
+            to="/progress"
+            className={`text-sm font-bold transition-colors ${
+              location.pathname.startsWith('/progress') ? 'text-primary' : 'text-secondary hover:text-primary'
+            }`}
+          >
+            Progress
+          </Link>
           
-          <div className="flex items-center gap-3 pl-4 border-l">
-            <div className="text-right hidden md:block">
-              <div className="text-xs font-semibold text-primary">Welcome, {fullName.split(' ')[0]}</div>
-              <button 
-                onClick={handleLogout}
-                className="text-xs text-secondary hover:text-error transition-colors flex items-center justify-end gap-1 mt-0.5"
-              >
-                Sign out <LogOut size={10} />
-              </button>
-            </div>
-            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border">
+          <div className="relative pl-6 border-l border-border-color" ref={dropdownRef}>
+            <button 
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden border hover:ring-2 hover:ring-primary transition-all focus:outline-none"
+            >
               {avatarUrl ? (
                 <img src={avatarUrl} alt="User avatar" className="w-full h-full object-cover" />
               ) : (
                 <User size={20} className="text-secondary" />
               )}
-            </div>
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-border-color rounded-xl shadow-lg py-2 z-50 animate-fade-in text-sm">
+                <div className="px-4 py-2 border-b border-border-color mb-1">
+                  <p className="text-xs text-secondary">Signed in as</p>
+                  <p className="font-bold text-text-primary truncate">{fullName}</p>
+                </div>
+                
+                <button 
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 text-error hover:bg-error-bg flex items-center gap-2 transition-colors"
+                >
+                  <LogOut size={16} />
+                  Sign out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

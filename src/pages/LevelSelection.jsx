@@ -33,12 +33,12 @@ export default function LevelSelection() {
   return (
     <div className="container py-12 animate-fade-in max-w-5xl">
       {/* Breadcrumbs */}
-      <div className="flex items-center text-xs font-semibold text-secondary mb-6 tracking-wide">
+      <div className="flex items-center text-xs font-semibold tracking-wider text-secondary mb-6 uppercase gap-2">
+        <Link to="/" className="hover:text-primary transition-colors">Zenviq</Link>
+        <ChevronRight size={14} className="text-gray-400" />
         <Link to="/categories" className="hover:text-primary transition-colors">Categories</Link>
-        <ChevronRight size={14} className="mx-2" />
-        <span className="capitalize">{categoryName}</span>
-        <ChevronRight size={14} className="mx-2" />
-        <span className="text-primary">Level Selection</span>
+        <ChevronRight size={14} className="text-gray-400" />
+        <span className="text-primary">{categoryName} Level Selection</span>
       </div>
 
       <div className="flex items-center gap-4 mb-4">

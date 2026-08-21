@@ -54,7 +54,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/categories" element={<Categories />} />
               <Route path="/levels/:categoryId" element={<LevelSelection />} />
-              <Route path="/quiz/:category/:level" element={<ActiveQuiz />} />
               <Route path="/completed" element={<QuizCompleted />} />
               <Route path="/progress" element={<Progress />} />
               {/* Default fallback */}
@@ -62,7 +61,7 @@ function App() {
             </Route>
             
             {/* Quiz Route - No Navbar/Footer layout */}
-            <Route path="/quiz/:categoryId/:levelId" element={<ActiveQuiz />} />
+            <Route path="/quiz/:category/:level" element={<ActiveQuiz />} />
             
             {/* Catch-all for authenticated users */}
             <Route path="*" element={<Navigate to="/" replace />} />

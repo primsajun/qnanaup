@@ -2,22 +2,24 @@
 
 @layer base {
   :root {
-    --color-primary: #211e5a; /* Deep Indigo matching logo */
-    --color-primary-hover: #312e81;
-    --color-bg-start: #f1f5f9; /* Soft light gray/blue */
-    --color-bg-end: #e2e8f0;
-    --color-surface: #ffffff; /* White cards */
-    --color-text-primary: #0f172a; /* Slate 900 */
-    --color-text-secondary: #475569; /* Slate 600 */
-    --color-border: #e2e8f0; /* Slate 200 */
-    --color-success: #16a34a; /* Green 600 */
-    --color-success-bg: #dcfce7;
-    --color-error: #dc2626; /* Red 600 */
+    --color-primary: #E52521; /* Mario Red */
+    --color-primary-hover: #b31b18; 
+    --color-bg-start: #5C94FC; /* Classic Sky Blue */
+    --color-bg-end: #8eb3ff; /* Lighter Sky Blue */
+    --color-surface: #ffffff; /* White Cards */
+    --color-text-primary: #111827; /* Near Black */
+    --color-text-secondary: #4b5563; /* Dark Gray */
+    --color-border: #e5e7eb; /* Light Gray */
+    --color-success: #43B047; /* Luigi Green */
+    --color-success-bg: #d1fae5;
+    --color-error: #E52521; /* Mario Red */
     --color-error-bg: #fee2e2;
   }
 
   body {
-    background: radial-gradient(circle at top left, #f8fafc, #eff6ff, #f1f5f9);
+    background: linear-gradient(-45deg, #5C94FC, #8eb3ff, #5C94FC, #7bb0ff);
+    background-size: 400% 400%;
+    animation: gradientBg 15s ease infinite;
     background-attachment: fixed;
     color: var(--color-text-primary);
     font-family: 'Inter', sans-serif;
@@ -30,6 +32,10 @@
 }
 
 @layer components {
+  .container {
+    @apply mx-auto px-4 md:px-8;
+  }
+
   /* Vanilla CSS Utilities for our app */
   .bg-bg-color { background-color: transparent; }
   .bg-surface { background-color: var(--color-surface); }
@@ -82,4 +88,34 @@
 
 .hover-lift:hover {
   transform: translateY(-2px);
+}
+
+@keyframes gradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-float-slow {
+  animation: float 20s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes marioRun {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(110vw); }
+}
+
+.animate-mario-run {
+  animation: marioRun 12s linear infinite;
 }

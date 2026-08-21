@@ -4,11 +4,11 @@ import { StopCircle, RotateCcw, CheckCircle2, XCircle, Lightbulb, ArrowRight, Lo
 import { supabase } from '../lib/supabaseClient';
 
 export default function ActiveQuiz() {
-  const { categoryId, levelId } = useParams();
+  const { category, level } = useParams();
   const navigate = useNavigate();
   
-  const categoryName = categoryId ? categoryId.charAt(0).toUpperCase() + categoryId.slice(1) : 'Science';
-  const levelName = levelId ? levelId.charAt(0).toUpperCase() + levelId.slice(1) : 'Expert';
+  const categoryName = category ? category.charAt(0).toUpperCase() + category.slice(1) : 'Science';
+  const levelName = level ? level.charAt(0).toUpperCase() + level.slice(1) : 'Expert';
 
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,10 +22,22 @@ export default function ActiveQuiz() {
 
   // Stats to pass to completion page
   const [stats, setStats] = useState({ correct: 0, incorrect: 0, breakdown: [] });
+  // Local session streak for fun animations
+  const [sessionStreak, setSessionStreak] = useState(0);
 
   useEffect(() => {
     fetchQuestions();
-  }, [categoryId, levelId]);
+
+    // Prevent browser back button
+    window.history.pushState(null, null, window.location.pathname);
+    const handlePopState = () => {
+      alert("Wanna go out? Click the STOP button!");
+      window.history.pushState(null, null, window.location.pathname);
+    };
+    
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [category, level]);
 
   const fetchQuestions = async () => {
     try {
@@ -52,11 +64,32 @@ export default function ActiveQuiz() {
         .eq('category', categoryName)
         .eq('level', levelName);
 
+      // Shuffle the options for every question so the correct answer isn't always first
+      const shuffledData = (data || []).map(q => {
+        const optionsWithMetadata = q.options.map((text, idx) => ({
+          text,
+          isCorrect: idx === q.correct_answer_index
+        }));
+        
+        // Fisher-Yates shuffle
+        for (let i = optionsWithMetadata.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [optionsWithMetadata[i], optionsWithMetadata[j]] = [optionsWithMetadata[j], optionsWithMetadata[i]];
+        }
+        
+        return {
+          ...q,
+          options: optionsWithMetadata.map(opt => opt.text),
+          correct_answer_index: optionsWithMetadata.findIndex(opt => opt.isCorrect)
+        };
+      });
+
       setTotalQuestions(count || 100);
-      setQuestions(data || []);
+      setQuestions(shuffledData);
       setCurrentIndex(0);
       setShowFeedback(false);
       setSelectedOption(null);
+      setSessionStreak(0);
     } catch (err) {
       console.error(err);
       setError("Failed to load questions. Make sure your database functions are set up.");
@@ -80,6 +113,7 @@ export default function ActiveQuiz() {
       
       // Reset local stats
       setStats({ correct: 0, incorrect: 0, breakdown: [] });
+      setSessionStreak(0);
       
       // Refetch all questions (will be 100 again)
       await fetchQuestions();
@@ -111,6 +145,13 @@ export default function ActiveQuiz() {
           question_id: currentQ.id,
           is_correct: isCorrect
         });
+
+        // Also ensure the streak is logged permanently, even if they restart!
+        const today = new Date().toISOString().split('T')[0];
+        await supabase.from('streaks_log').upsert({
+          user_id: session.user.id,
+          activity_date: today
+        }, { onConflict: 'user_id,activity_date' });
       }
 
       // Update local stats
@@ -120,6 +161,8 @@ export default function ActiveQuiz() {
         incorrect: prev.incorrect + (!isCorrect ? 1 : 0),
         breakdown: [...prev.breakdown, isCorrect]
       }));
+      
+      setSessionStreak(prev => isCorrect ? prev + 1 : 0);
 
       // Show feedback
       setShowFeedback(true);
@@ -127,6 +170,7 @@ export default function ActiveQuiz() {
       console.error("Failed to save answer:", err);
       // Still show feedback even if save failed, so user isn't stuck
       setShowFeedback(true); 
+      setSessionStreak(prev => isCorrect ? prev + 1 : 0);
     } finally {
       setIsSubmitting(false);
     }
@@ -223,8 +267,30 @@ export default function ActiveQuiz() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center py-12 px-4">
-        <div className="w-full max-w-3xl">
+      <main className="flex-1 flex flex-col items-center py-12 px-4 relative">
+        
+        {/* Fun Popups! */}
+        {showFeedback && isSelectedCorrect && sessionStreak > 0 && sessionStreak % 5 === 0 && (
+          <div className="fixed bottom-10 right-10 z-50 animate-bounce">
+            <img 
+              src="https://media.tenor.com/tZ1Mh17zXIEAAAAi/minions-cheering.gif" 
+              alt="Cheering Minions"
+              className="w-48 h-48 drop-shadow-2xl"
+            />
+          </div>
+        )}
+
+        {showFeedback && !isSelectedCorrect && (
+          <div className="fixed bottom-10 right-10 z-50 animate-pulse">
+            <img 
+              src="https://media.tenor.com/N6wT58FvIigAAAAi/minions-sad.gif" 
+              alt="Sad Minion"
+              className="w-48 h-48 drop-shadow-2xl opacity-90"
+            />
+          </div>
+        )}
+
+        <div className="w-full max-w-3xl z-10">
           
           {/* Progress */}
           <div className="flex justify-between text-xs font-bold text-secondary mb-2 uppercase tracking-wide">

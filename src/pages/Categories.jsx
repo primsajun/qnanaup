@@ -16,6 +16,7 @@ export default function Categories() {
   const navigate = useNavigate();
   const [masteryData, setMasteryData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchMastery = async () => {
@@ -32,9 +33,15 @@ export default function Categories() {
         if (data) {
           const map = {};
           data.forEach(item => {
-            const percentage = item.total_questions > 0 
-              ? Math.round((item.correct_answers / item.total_questions) * 100) 
+            const rawPercentage = item.total_questions > 0 
+              ? (item.correct_answers / item.total_questions) * 100 
               : 0;
+            
+            // If they have > 0 correct but it rounds down to 0, force it to 1% so they see progress
+            const percentage = (rawPercentage > 0 && rawPercentage < 1) 
+              ? 1 
+              : Math.round(rawPercentage);
+              
             map[item.category] = {
               total: item.total_questions,
               mastery: percentage
@@ -63,13 +70,19 @@ export default function Categories() {
     { name: 'Technology', icon: <Cpu size={24} />, id: 'tech' }
   ];
 
+  const filteredCategories = categories.filter(cat => 
+    cat.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="container py-8 animate-fade-in">
       
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <div className="text-xs font-semibold tracking-wider text-secondary mb-1 uppercase">
-            Zenviq &gt; Categories
+          <div className="text-xs font-semibold tracking-wider text-secondary mb-1 uppercase flex items-center gap-2">
+            <span className="cursor-pointer hover:text-primary transition-colors" onClick={() => navigate('/')}>Zenviq</span>
+            <span className="text-gray-400">&gt;</span>
+            <span className="text-primary">Categories</span>
           </div>
           <h1 className="text-3xl font-bold text-text-primary mb-2">Choose a Category</h1>
           <p className="text-secondary">
@@ -80,6 +93,8 @@ export default function Categories() {
         <div className="relative w-full md:w-64">
           <input 
             type="text" 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search categories..." 
             className="w-full bg-white border border-border-color rounded-lg py-2 px-4 pl-10 focus:outline-none focus:border-primary text-sm shadow-sm"
           />
@@ -89,8 +104,13 @@ export default function Categories() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {categories.map((cat) => {
+      {filteredCategories.length === 0 ? (
+        <div className="text-center py-12 text-secondary">
+          No categories found matching "{searchQuery}".
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {filteredCategories.map((cat) => {
           const catData = masteryData[cat.name] || { total: 0, mastery: 0 };
           
           return (
@@ -122,7 +142,8 @@ export default function Categories() {
             </div>
           );
         })}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
