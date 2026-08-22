@@ -51,14 +51,9 @@ export default function Navbar({ session }) {
 
         {/* User Actions */}
         <div className="flex items-center gap-6">
-          <Link
-            to="/progress"
-            className={`text-sm font-bold transition-colors ${
-              location.pathname.startsWith('/progress') ? 'text-primary' : 'text-secondary hover:text-primary'
-            }`}
-          >
-            Progress
-          </Link>
+          <div className="text-sm font-bold text-text-primary">
+            Welcome, {fullName.split(' ')[0]}
+          </div>
           
           <div className="relative pl-6 border-l border-border-color" ref={dropdownRef}>
             <button 
