@@ -42,21 +42,21 @@ export default function Login() {
       <MatrixBackground />
 
       {/* Main Login Card */}
-      <div className="bg-surface rounded-2xl shadow-xl border border-border-color w-full max-w-lg min-h-[600px] p-10 sm:p-14 flex flex-col items-center justify-center text-center animate-fade-in">
+      <div className="bg-surface rounded-2xl shadow-xl border border-border-color w-full max-w-md p-8 sm:p-10 flex flex-col items-center justify-center text-center animate-fade-in">
         
         {/* Logo Container */}
-        <div className="bg-gray-100 rounded-xl p-4 mb-6 flex flex-col items-center justify-center w-24 h-24 shadow-sm">
-          <img src="/logo.png" alt="Qnanaup Logo" className="w-12 h-12 object-contain" />
-          <span className="text-xs font-bold text-primary mt-1.5 tracking-wide">Qnanaup</span>
+        <div className="bg-gray-100 rounded-xl p-4 mb-4 flex flex-col items-center justify-center w-20 h-20 shadow-sm">
+          <img src="/logo.png" alt="Qnanaup Logo" className="w-10 h-10 object-contain" />
+          <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Qnanaup</span>
         </div>
         
-        <h1 className="text-3xl font-bold text-primary mb-6 tracking-tight">Qnanaup</h1>
+        <h1 className="text-2xl font-bold text-primary mb-4 tracking-tight">Qnanaup</h1>
 
-        <h2 className="text-3xl font-semibold text-text-primary mb-5">
+        <h2 className="text-2xl font-semibold text-text-primary mb-3">
           Master Your Knowledge
         </h2>
         
-        <p className="text-secondary text-base mb-10 leading-relaxed px-4">
+        <p className="text-secondary text-sm mb-8 leading-relaxed px-2">
           Challenge yourself across categories from Easy to Expert. Sign in to start your journey.
         </p>
 
