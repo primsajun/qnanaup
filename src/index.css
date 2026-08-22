@@ -119,3 +119,14 @@
 .animate-mario-run {
   animation: marioRun 12s linear infinite;
 }
+
+/* Force hide Netlify injected badges/toolbars */
+#netlify-badge, 
+.netlify-badge, 
+netlify-toolbar,
+#netlify-toolbar {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
