@@ -31,7 +31,7 @@ export default function Navbar({ session }) {
   const avatarUrl = userMeta?.avatar_url;
 
   return (
-    <nav className="border-b border-border-color bg-surface">
+    <nav className="sticky top-0 z-50 border-b border-border-color bg-surface/95 backdrop-blur-sm">
       <div className="container flex items-center justify-between py-4">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group relative">
