@@ -3,10 +3,12 @@ import Navbar from './Navbar';
 
 export default function MainLayout({ session }) {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative">
       {/* Decorative Background Orbs (Clouds & Coins) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-white/60 blur-[80px] pointer-events-none animate-float-slow z-[-1]"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-yellow-400/40 blur-[80px] pointer-events-none animate-float-slower z-[-1]"></div>
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-white/60 blur-[80px] animate-float-slow"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-yellow-400/40 blur-[80px] animate-float-slower"></div>
+      </div>
 
       {/* Mario Running Animation */}
       <div className="fixed bottom-0 left-0 w-full overflow-hidden pointer-events-none z-0">
