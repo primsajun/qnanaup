@@ -6,12 +6,12 @@ export default function Footer() {
       <div className="container py-8 flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Logo */}
         <div className="text-primary font-bold text-xl tracking-tight">
-          Synapse
+          Qnanaup
         </div>
 
         {/* Copyright */}
         <div className="text-xs font-medium text-secondary">
-          &copy; 2024 Synapse Knowledge Systems
+          &copy; 2024 Qnanaup Knowledge Systems
         </div>
 
         {/* Links */}

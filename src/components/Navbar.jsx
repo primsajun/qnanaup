@@ -42,7 +42,7 @@ export default function Navbar({ session }) {
             className="w-8 h-8 absolute -left-10 -top-2 animate-bounce opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           />
           <div className="flex items-center text-primary font-bold text-2xl tracking-tight">
-            Synapse
+            Qnanaup
           </div>
         </Link>
 

@@ -38,29 +38,25 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between items-center py-8 px-4 w-full relative z-0">
-      
+    <>
       <MatrixBackground />
 
-      {/* Spacer to push card to center */}
-      <div className="flex-1"></div>
-
       {/* Main Login Card */}
-      <div className="bg-surface rounded-2xl shadow-sm border border-border-color w-full max-w-md p-8 sm:p-12 flex flex-col items-center text-center animate-fade-in">
+      <div className="bg-surface rounded-2xl shadow-xl border border-border-color w-full max-w-lg min-h-[600px] p-10 sm:p-14 flex flex-col items-center justify-center text-center animate-fade-in">
         
         {/* Logo Container */}
-        <div className="bg-gray-100 rounded-xl p-4 mb-4 flex flex-col items-center justify-center w-20 h-20">
-          <img src="/logo.png" alt="Synapse Logo" className="w-10 h-10 object-contain" />
-          <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Synapse</span>
+        <div className="bg-gray-100 rounded-xl p-4 mb-6 flex flex-col items-center justify-center w-24 h-24 shadow-sm">
+          <img src="/logo.png" alt="Qnanaup Logo" className="w-12 h-12 object-contain" />
+          <span className="text-xs font-bold text-primary mt-1.5 tracking-wide">Qnanaup</span>
         </div>
         
-        <h1 className="text-2xl font-bold text-primary mb-6 tracking-tight">Synapse</h1>
+        <h1 className="text-3xl font-bold text-primary mb-6 tracking-tight">Qnanaup</h1>
 
-        <h2 className="text-2xl font-semibold text-text-primary mb-4">
+        <h2 className="text-3xl font-semibold text-text-primary mb-5">
           Master Your Knowledge
         </h2>
         
-        <p className="text-secondary text-sm mb-10 leading-relaxed px-4">
+        <p className="text-secondary text-base mb-10 leading-relaxed px-4">
           Challenge yourself across categories from Easy to Expert. Sign in to start your journey.
         </p>
 
@@ -85,18 +81,6 @@ export default function Login() {
           {loading ? 'Connecting...' : 'Sign in with Google'}
         </button>
       </div>
-
-      {/* Spacer to push footer to bottom */}
-      <div className="flex-1"></div>
-
-      {/* Footer */}
-      <footer className="w-full text-center mt-12 mb-4 text-xs font-medium text-gray-500 flex flex-wrap justify-center gap-x-4 gap-y-2">
-        <span>© 2024 Synapse. All rights reserved.</span>
-        <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-        <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-        <a href="#" className="hover:text-primary transition-colors">Help Center</a>
-      </footer>
-
-    </div>
+    </>
   );
 }

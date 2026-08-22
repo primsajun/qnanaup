@@ -2,24 +2,19 @@ import { Outlet, Link } from 'react-router-dom';
 
 export default function AuthLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-bg-color items-center">
+    <div className="min-h-screen flex flex-col items-center pt-8 bg-bg-color relative z-0 px-4 pb-12">
       {/* Top Logo */}
-      <div className="py-8">
-        <Link to="/" className="flex items-center gap-2 bg-surface px-4 py-2 rounded-md shadow-sm">
-          <div className="flex items-center text-primary font-bold text-lg tracking-tight">
-            Synapse
+      <div className="z-10 mb-8">
+        <Link to="/" className="flex items-center gap-2 bg-surface px-6 py-2 rounded-md shadow-sm border border-border-color hover-lift">
+          <div className="text-primary font-bold text-lg tracking-tight">
+            Qnanaup
           </div>
         </Link>
       </div>
 
-      <main className="flex-1 w-full max-w-md flex flex-col items-center justify-center -mt-16">
+      <main className="w-full flex flex-col items-center justify-start z-10">
         <Outlet />
       </main>
-
-      <div className="py-8 text-center text-xs text-secondary font-medium mt-auto">
-        By continuing, you agree to Synapse's <br />
-        <Link to="#" className="underline">Terms of Service</Link> and <Link to="#" className="underline">Privacy Policy</Link>.
-      </div>
     </div>
   );
 }
