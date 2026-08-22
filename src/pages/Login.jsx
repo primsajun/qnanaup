@@ -46,7 +46,7 @@ export default function Login() {
         
         {/* Logo Container */}
         <div className="bg-gray-100 rounded-xl p-4 mb-4 flex flex-col items-center justify-center w-20 h-20 shadow-sm">
-          <img src="/logo.png" alt="Qnanaup Logo" className="w-10 h-10 object-contain" />
+          <img src="/logo.jpg" alt="Qnanaup Logo" className="w-10 h-10 object-contain rounded-md" />
           <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Qnanaup</span>
         </div>
         

@@ -41,6 +41,7 @@ export default function Navbar({ session }) {
             alt="Star" 
             className="w-8 h-8 absolute -left-10 -top-2 animate-bounce opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           />
+          <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg shadow-sm" />
           <div className="flex items-center text-primary font-bold text-2xl tracking-tight">
             Qnanaup
           </div>
