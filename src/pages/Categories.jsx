@@ -80,7 +80,7 @@ export default function Categories() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <div className="text-xs font-semibold tracking-wider text-secondary mb-1 uppercase flex items-center gap-2">
-            <span className="cursor-pointer hover:text-primary transition-colors" onClick={() => navigate('/')}>Zenviq</span>
+            <span className="cursor-pointer hover:text-primary transition-colors" onClick={() => navigate('/')}>Synapse</span>
             <span className="text-gray-400">&gt;</span>
             <span className="text-primary">Categories</span>
           </div>

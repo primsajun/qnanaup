@@ -20,7 +20,7 @@ export default function Home() {
           className="btn-primary text-lg px-8 py-4 shadow-md hover-lift flex items-center gap-3"
         >
           <Play size={20} className="fill-white" />
-          Start Learning
+          Start Journey
         </button>
       </div>
 

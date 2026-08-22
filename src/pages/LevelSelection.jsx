@@ -34,7 +34,7 @@ export default function LevelSelection() {
     <div className="container py-12 animate-fade-in max-w-5xl">
       {/* Breadcrumbs */}
       <div className="flex items-center text-xs font-semibold tracking-wider text-secondary mb-6 uppercase gap-2">
-        <Link to="/" className="hover:text-primary transition-colors">Zenviq</Link>
+        <Link to="/" className="hover:text-primary transition-colors">Synapse</Link>
         <ChevronRight size={14} className="text-gray-400" />
         <Link to="/categories" className="hover:text-primary transition-colors">Categories</Link>
         <ChevronRight size={14} className="text-gray-400" />

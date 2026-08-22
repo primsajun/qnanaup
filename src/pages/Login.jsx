@@ -50,11 +50,11 @@ export default function Login() {
         
         {/* Logo Container */}
         <div className="bg-gray-100 rounded-xl p-4 mb-4 flex flex-col items-center justify-center w-20 h-20">
-          <img src="/logo.png" alt="Zenviq Logo" className="w-10 h-10 object-contain" />
-          <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Zenviq</span>
+          <img src="/logo.png" alt="Synapse Logo" className="w-10 h-10 object-contain" />
+          <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Synapse</span>
         </div>
         
-        <h1 className="text-2xl font-bold text-primary mb-6 tracking-tight">Zenviq</h1>
+        <h1 className="text-2xl font-bold text-primary mb-6 tracking-tight">Synapse</h1>
 
         <h2 className="text-2xl font-semibold text-text-primary mb-4">
           Master Your Knowledge
@@ -91,7 +91,7 @@ export default function Login() {
 
       {/* Footer */}
       <footer className="w-full text-center mt-12 mb-4 text-xs font-medium text-gray-500 flex flex-wrap justify-center gap-x-4 gap-y-2">
-        <span>© 2024 Zenviq. All rights reserved.</span>
+        <span>© 2024 Synapse. All rights reserved.</span>
         <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
         <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
         <a href="#" className="hover:text-primary transition-colors">Help Center</a>
