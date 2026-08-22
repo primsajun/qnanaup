@@ -50,7 +50,7 @@ export default function Login() {
           <span className="text-[10px] font-bold text-primary mt-1 tracking-wide">Qnanaup</span>
         </div>
         
-        <h1 className="text-2xl font-bold text-primary mb-4 tracking-tight">Qnanaup</h1>
+        <img src="/qnanaup-text.png" alt="Qnanaup" className="h-8 mb-6 object-contain" />
 
         <h2 className="text-2xl font-semibold text-text-primary mb-3">
           Master Your Knowledge
