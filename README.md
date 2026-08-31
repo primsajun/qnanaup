@@ -23,11 +23,6 @@
 - **Backend-as-a-Service (BaaS):** Supabase handles all data storage (PostgreSQL) and user session management (Google OAuth). The frontend communicates securely directly with the Supabase REST API.
 - **Keep-Alive Worker:** An external cron job pings the Supabase database automatically every few days to prevent the free-tier database from entering hibernation.
 
-## 📸 Screenshots
-*(Add your screenshots here by replacing the placeholder links)*
-- ![Login Screen](https://via.placeholder.com/800x400?text=Login+Screen)
-- ![Dashboard](https://via.placeholder.com/800x400?text=Dashboard+View)
-- ![Quiz View](https://via.placeholder.com/800x400?text=Active+Quiz)
 
 ## 🚀 Live Demo
 Experience the live application here: **[QnanaUp on Netlify](https://qnanaup.netlify.app)**
